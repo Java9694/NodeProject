@@ -6,7 +6,7 @@ const app = express();
 
 // define a simple route
 app.get('/', function(request, response){
-    response.sendFile(__dirname + '/index.html');
+    response.sendFile(__dirname + '/start.html');
 
 });
 
