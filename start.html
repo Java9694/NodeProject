@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type='text/javascript'>
+function init() {
+    var canvas = document.getElementById("canvas");
+    context = canvas.getContext("2d");
+    images = new Array();
+	images1 = new Array();
+}
+function drawImage(idx) {
+    var col_=[3,4,5,10,20];
+    var row_=[6,8,10,20,40];
+    var img_wi=[500,150,120,60,30];
+    var img_hi=[500,75,60,30,15];
+    var color_=['gray','black','gray','black','gray','black',     
+             	'black','gray','black','gray','black','gray',
+             	'gray','black','gray','black','gray','black',
+             	'black','gray','black','gray','black','gray',
+             	'gray','black','gray','black','gray','black',     
+             	'black','gray','black','gray','black','gray',
+             	'gray','black','gray','black','gray','black',
+             	'black','gray','black','gray','black','gray'];
+    var myObj=JSON.parse(idx);
+    
+  
+   
+    idx=parseInt(myObj.product_type-1);
+    alert(idx);  
+    
+var Qty=0;
+    for (var i = 0; i < col_[idx]; i++) {
+                               for (var j = 0; j < row_[idx]; j++) {
+                            	   
+                           var index = i * 3 + j;
+	                images[Qty] = new Image();
+			  images[Qty].src =  myObj.grt[Qty].profile_image_url.substr(1).slice(0, -1);
+		
+         images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],color_[Qty]);
+	parseInt(Qty+=1);
+}
+}
+                    for (var i = 3*col_[idx]; i < 3*col_[idx]+col_[idx]; i++) {
+                    for (var j = 0; j <row_[idx]; j++) {
+                    images[Qty] = new Image();
+                    images[Qty].src =  myObj.grt[Qty].profile_image_url.substr(1).slice(0, -1);
+                    images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],color_[Qty]);
+     	            parseInt(Qty+=1);
+}
+}
+images1[0]=new Image();
+images1[0].src = '383168.jpg';
+images1[0].onload=dumb1(context, images1[0]);
+}
+window.onload = init;
+function dumb(ctx,img,index,i,j,Qty,wii,hii,color_){
+return function (){
+	  ctx.fillStyle =color_;
+	  console.log(color_)
+	  ctx.strokeRect(i * wii, j * hii, wii, hii);
+	  ctx.fillRect(i * wii,j * hii,wii,40);
+	  ctx.fillStyle = "white";
+      ctx.font = "25pt sans-serif";
+	  ctx.fillText("For Header Message!!", (i*wii)+80, (j*hii)+30 );
+	  
+	  ctx.fillStyle = "black";
+      ctx.font = "16pt sans-serif";
+	  ctx.fillText("Message Blah Blah Blah Blah ! Blah Blah,", (i*wii)+48, (j*hii)+70 );
+	  ctx.fillText("Message Blah Blah Blah Blah ! Blah Blah,", (i*wii)+48, (j*hii)+95 );
+	  ctx.fillText("Message Blah Blah Blah Blah !! Blah Blah", (i*wii)+48, (j*hii)+115 );
+	  ctx.drawImage(img, (i*wii)+100, (j * hii)+140, 300, 300);
+	  ctx.fillText("Signature!!", (i*wii)+220, (j*hii)+475 );
+		
+/* 	 ctx.fillText("Signature"+Qty, (i*wii)+wii/1.6, (j*hii)-hii/10);  */
+};
+}
+function dumb1(ctx,img){
+   return function () {
+	   ctx.strokeRect(1500, 0 , 3000, 3000);
+        context.drawImage(img,1500,0, 3000, 3000); 
+    };
+}
+</script>
+</head>
+<body>
+  <canvas id="canvas" width="6000px" height="3000px" style="border: solid;"></canvas>
+
+    
+  
+  <textarea rows="10" cols="20" onblur="drawImage(this.value)">
+  
+  
+  
+  </textarea>
+    
+</body>
+</html>
