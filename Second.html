@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script type='text/javascript'>
+function init(){
+    var canvas = document.getElementById("canvas");
+    context = canvas.getContext("2d");
+    images = new Array();
+	images1 = new Array();
+	drawImage(localStorage.getItem("JsnDta"));
+}
+function drawImage(idx) {
+    var col_=[3,4,5,10,20];
+    var row_=[6,8,10,20,40];
+    var img_wi=[500,375,300,150,75];
+    var img_hi=[500,375,300,150,75];
+    var myObj=JSON.parse(idx);
+    var leng=myObj.grt.length;
+    idx=parseInt(myObj.product_type-1);
+    var Qty=0;
+    var clr='black';
+    for (var i = 0; i < col_[idx]; i++) {
+    	
+    	
+    if(clr=='black'){
+    clr='gray';
+    }else{clr='black';}
+    for (var j = 0; j < row_[idx]; j++) {
+    	
+    	
+    if(clr=='black'){
+    clr='gray';
+    }else{
+    clr='black';
+    }images[Qty] = new Image();
+	if(Qty>=(leng-1)){
+	images[Qty].src ="miss.png";
+	      		
+	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],'Miss Title','Miss Your Messag','Signature',clr);
+
+	                }
+	                else{
+	                	 images[Qty].src =  myObj.grt[Qty].profile_image_url.substr(1).slice(0, -1);
+	             		
+	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],myObj.grt[Qty].title,myObj.grt[Qty].message,myObj.grt[Qty].signature,clr);
+
+	                }
+				parseInt(Qty+=1);
+}
+}
+                    for (var i = 3*col_[idx]; i < 3*col_[idx]+col_[idx]; i++) {
+                    	if(clr=='black'){
+                    		clr='gray';
+                    	}else{
+                    		clr='black';
+                    	}
+                    for (var j = 0; j <row_[idx]; j++) {
+                    	if(clr=='black'){
+                    		clr='gray';
+                    	}else{
+                    		clr='black';
+                    	}
+                    images[Qty] = new Image();
+                    if(Qty>=(leng-1)){
+	                	 images[Qty].src ="miss.png";
+	             		
+	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],'Miss Title','Miss Your Messag','Signature',clr);
+
+	                }
+	                else{
+	                	 images[Qty].src =  myObj.grt[Qty].profile_image_url.substr(1).slice(0, -1);
+	             		
+	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],myObj.grt[Qty].title,myObj.grt[Qty].message,myObj.grt[Qty].signature,clr);
+
+	                }  parseInt(Qty+=1);
+}
+}
+images1[0]=new Image();
+images1[0].src = myObj.center_image.substr(1).slice(0, -1);
+images1[0].onload=dumb1(context, images1[0]);
+}
+window.onload = init;
+function dumb(ctx,img,index,i,j,Qty,wii,hii,title_,msg_,Sing_,clr){
+return function (){
+	 ctx.fillStyle =clr;
+	  
+	  ctx.strokeRect(i * wii, j * hii, wii, hii);
+	  ctx.fillRect(i * wii,j * hii,wii,(hii/100)*10);
+	
+	   ctx.fillStyle = "white";
+      ctx.font =((hii/100)*10)/2+"pt sans-serif";
+	  ctx.fillText(title_, (i*wii)+(wii)*.25, (j*hii)+(hii*.065));
+	  
+	  ctx.fillStyle = "black";
+      ctx.font =wii*.04+"pt sans-serif";
+	  ctx.fillText(msg_, (i*wii)+(wii*.1), (j*hii)+(hii*.16) ); 
+	 
+	  ctx.drawImage(img, (i*wii)+(wii*.2), (j*hii)+(hii*.3), wii*.6, hii*.6);
+	   ctx.fillText(Sing_, (i*wii)+(wii*.46), (j*hii)+(hii*.95) ); 
+		
+
+};
+}
+function dumb1(ctx,img){
+   return function () {
+	   ctx.strokeRect(1500, 0 , 3000, 3000);
+        context.drawImage(img,1500,0, 3000, 3000); 
+    };
+}
+</script>
+</head>
+<body>
+  <canvas id="canvas" width="6000px" height="3000px" style="border: solid;"></canvas>
+
+    
+  
+     
+</body>
+</html>

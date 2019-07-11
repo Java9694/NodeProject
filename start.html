@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="Second.html">
+<textarea rows="50" cols="100" id="JsnDta" style="height: 60vh;width: 80%;">
+{"center_image":"(383168.jpg)",
+    		"grt":[
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"}
+    	    ],
+    	    "product_type":"1"
+    	    } 
+
+
+
+</textarea>
+<input type="button" value="Create Image" onclick="Fn(this);">
+</form>
+
+</body>
+
+<script type="text/javascript">
+
+function Fn(a) {
+	
+	var jsn=document.getElementById('JsnDta').value
+     var myObj=JSON.parse(jsn);
+	var cond=true;
+	console.log(myObj);
+	msg="";
+	for(var i=0;i<myObj.grt.length;i++){
+		
+		if((myObj.grt[i].title).length>20){
+			cond=false;
+			msg+="Length >20 in  Greeting Title at line "+ i+" ";
+		}if((myObj.grt[i].message).length>20){
+			cond=false;
+			msg+="Length >120 in  Greeting Message at line "+ i+"";
+		}
+		if((myObj.grt[i].message).length>20){
+			cond=false;
+			msg+="Length >30 in  Greeting Signature at line "+ i+" ";
+		}
+	}
+	if(!cond){
+		alert(msg);	
+	}
+	else{
+	localStorage.setItem("JsnDta", jsn);
+	
+	 a.form.submit(); }
+	
+}
+</script>
+</html>
