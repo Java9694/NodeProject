@@ -6,6 +6,13 @@
 </head>
 <body>
 <form action="Second.html">
+	<select onchange="getJson(this.value)" style="position: fixed">
+		<option value="1"> Product A</option>
+			<option value="2">Product B</option>
+				<option value="3">Product C</option>
+					<option value="4">Product D</option>
+						<option value="5">Product E</option>
+	</select><br>
 <textarea rows="50" cols="100" id="JsnDta" style="height: 60vh;width: 80%;">
 {"center_image":"(383168.jpg)",
     		"grt":[
@@ -21,9 +28,9 @@
     	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
     	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
     	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"}
-    	    ],
-    	    "product_type":"1"
-    	    } 
+    	    ], "product_type":"1"} 
+
+
 
 
 
@@ -47,13 +54,13 @@ function Fn(a) {
 		if((myObj.grt[i].title).length>20){
 			cond=false;
 			msg+="Length >20 in  Greeting Title at line "+ i+" ";
-		}if((myObj.grt[i].message).length>20){
+		}if((myObj.grt[i].message).length>140){
 			cond=false;
 			msg+="Length >120 in  Greeting Message at line "+ i+"";
 		}
-		if((myObj.grt[i].message).length>20){
+		if((myObj.grt[i].signature).length>30){
 			cond=false;
-			msg+="Length >30 in  Greeting Signature at line "+ i+" ";
+			msg+="Length >30 in  Greeting Signature at line "+i+"";
 		}
 	}
 	if(!cond){
@@ -64,6 +71,19 @@ function Fn(a) {
 	
 	 a.form.submit(); }
 	
+}
+function getJson(a){
+	var dta="";
+	dtainr="";
+	var size=['35','63','99','399','1599'];
+
+
+
+   for(var i=0;i<size[a-1];i++){
+	 dtainr+="{\"title\":\"Title\", \"message\" :\"Message\" ,\"profile_image_url\":\"(383168.jpg)\",\"signature\":\"Dummmmy\"},";  
+   }
+var dta="{\"center_image\":\"(383168.jpg)\",\"grt\":["+dtainr+"  {\"title\":\"Title\", \"message\" :\"Message\" ,\"profile_image_url\":\"(383168.jpg)\",\"signature\":\"Dummmmy\"}   ], \"product_type\":\""+a+"\"} ";
+var jsn=document.getElementById('JsnDta').value=dta;
 }
 </script>
 </html>
