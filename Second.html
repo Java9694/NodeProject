@@ -4,7 +4,10 @@
 <head>
 <script type='text/javascript'>
 function init(){
-    var canvas = document.getElementById("canvas");
+	var canvas = document.getElementById("canvas");
+	canvas.width = canvas.getBoundingClientRect().width;
+canvas.height = canvas.getBoundingClientRect().height;
+
     context = canvas.getContext("2d");
     images = new Array();
 	images1 = new Array();
@@ -14,15 +17,17 @@ function drawImage(idx) {
     var col_=[3,4,5,10,20];
     var row_=[6,8,10,20,40];
     var img_wi=[500,375,300,150,75];
-    var img_hi=[500,375,300,150,75];
+	var img_hi=[500,375,300,150,75];
+
     var myObj=JSON.parse(idx);
     var leng=myObj.grt.length;
-    idx=parseInt(myObj.product_type-1);
-    var Qty=0;
+	idx=parseInt(myObj.product_type-1);
+	
+	var Qty=0;
     var clr='black';
     for (var i = 0; i < col_[idx]; i++) {
     	
-    	
+	
     if(clr=='black'){
     clr='gray';
     }else{clr='black';}
@@ -33,7 +38,8 @@ function drawImage(idx) {
     clr='gray';
     }else{
     clr='black';
-    }images[Qty] = new Image();
+	}images[Qty] = new Image();
+	
 	if(Qty>=(leng-1)){
 	images[Qty].src ="miss.png";
 	      		
@@ -87,17 +93,17 @@ return function (){
 	  
 	  ctx.strokeRect(i * wii, j * hii, wii, hii);
 	  ctx.fillRect(i * wii,j * hii,wii,(hii/100)*10);
-	
+	   ctx.textAlign = "center";    
 	   ctx.fillStyle = "white";
       ctx.font =((hii/100)*10)/2+"pt sans-serif";
-	  ctx.fillText(title_, (i*wii)+(wii)*.25, (j*hii)+(hii*.065));
+	  ctx.fillText(title_, (i*wii)+(wii)/2, (j*hii)+(hii*.065));
 	  
 	  ctx.fillStyle = "black";
       ctx.font =wii*.04+"pt sans-serif";
-	  ctx.fillText(msg_, (i*wii)+(wii*.1), (j*hii)+(hii*.16) ); 
+	  ctx.fillText(msg_, (i*wii)+(wii/2), (j*hii)+(hii*.16) ); 
 	 
 	  ctx.drawImage(img, (i*wii)+(wii*.2), (j*hii)+(hii*.3), wii*.6, hii*.6);
-	   ctx.fillText(Sing_, (i*wii)+(wii*.46), (j*hii)+(hii*.95) ); 
+	   ctx.fillText(Sing_, (i*wii)+(wii/2), (j*hii)+(hii*.95) ); 
 		
 
 };
