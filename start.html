@@ -16,19 +16,20 @@
 <textarea rows="50" cols="100" id="JsnDta" style="height: 60vh;width: 80%;">
 {"center_image":"(383168.jpg)",
     		"grt":[
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
-    	    {"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"}
-    	    ], "product_type":"1"} 
+    	  {"id":"1","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"2","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"3","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"4","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"5","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"6","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"7","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"8","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"9","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"10","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"11,"title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	  {"id":"12","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"},
+    	    {"id:"13","title":"Title", "message" :"Message" ,"profile_image_url":"(383168.jpg)","signature":"Dummmmy"}
+    	    ], "product":"A"} 
 
 
 
@@ -41,7 +42,6 @@
 </body>
 
 <script type="text/javascript">
-
 function Fn(a) {
 	
 	var jsn=document.getElementById('JsnDta').value
@@ -76,13 +76,10 @@ function getJson(a){
 	var dta="";
 	dtainr="";
 	var size=['35','63','99','399','1599'];
-
-
-
    for(var i=0;i<size[a-1];i++){
-	 dtainr+="{\"title\":\"Title\", \"message\" :\"Message\" ,\"profile_image_url\":\"(383168.jpg)\",\"signature\":\"Dummmmy\"},";  
+	 dtainr+="{\"id\": "+i+",\"title\":\"Title\", \"message\" :\"Message\" ,\"profile_image_url\":\"(383168.jpg)\",\"signature\":\"Dummmmy\"},";  
    }
-var dta="{\"center_image\":\"(383168.jpg)\",\"grt\":["+dtainr+"  {\"title\":\"Title\", \"message\" :\"Message\" ,\"profile_image_url\":\"(383168.jpg)\",\"signature\":\"Dummmmy\"}   ], \"product_type\":\""+a+"\"} ";
+var dta="{\"center_image\":\"(383168.jpg)\",\"grt\":["+dtainr+"  {,\"id\" :"+(parseInt(size[a-1])+1)+"  \"title\":\"Title\", \"message\" :\"Message\" ,\"profile_image_url\":\"(383168.jpg)\",\"signature\":\"Dummmmy\"}   ], \"product_type\":\""+a+"\"} ";
 var jsn=document.getElementById('JsnDta').value=dta;
 }
 </script>
