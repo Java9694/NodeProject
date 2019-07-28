@@ -53,15 +53,17 @@ function Fn(a) {
 	
 }
 function getJson(a){
+	alert(a);
 	var dta="";
 	
-	
+	var p_typ=["","A","B","C","D"];
+	alert(p_typ[a]);
 	dtainr="";
 	var size=['35','63','99','399','1599'];
    for(var i=0;i<size[a-1];i++){
 	 dtainr+="{\"id\":\"  "+i+" \",\"title\":\"Title\", \"message\" :\"Message\" ,\"profile_image_url\":\"(Img/"+imgret(i+1)+""+parseInt(i+1)+".jpg)\",\"signature\":\"Dummmmy\"},";  
    }
-var dta="{\"center_image\":\"(383168.jpg)\",\"grt\":["+dtainr+"  {\"id\" :\" "+(parseInt(size[a-1])+1)+" \" ,  \"title\":\"Title\", \"message\" :\"Message\" ,\"profile_image_url\":\"(Img/"+imgret(parseInt(size[a-1])+1)+""+(parseInt((size[a-1]))+1)+".jpg)\",\"signature\":\"Dummmmy\"}   ], \"product\":\""+a+"\"} ";
+var dta="{\"center_image\":\"(383168.jpg)\",\"grt\":["+dtainr+"  {\"id\" :\" "+(parseInt(size[a-1])+1)+" \" ,  \"title\":\"Title\", \"message\" :\"Message\" ,\"profile_image_url\":\"(Img/"+imgret(parseInt(size[a-1])+1)+""+(parseInt((size[a-1]))+1)+".jpg)\",\"signature\":\"Dummmmy\"}   ], \"product\":\""+p_typ[a]+"\"} ";
 var jsn=document.getElementById('JsnDta').value=dta;
 }
 
