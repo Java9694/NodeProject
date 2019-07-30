@@ -29,6 +29,7 @@ function drawImage(jjsn) {
     if(leng>=(2*((col_[idx])*(row_[idx])))){
     var posi=[[1,22,7,28,13,34,19,4,25,10,31,16,2,23,8,29,14,35,20,5,26,11,32,17,3,24,9,30,15,36,21,6,27,12,33,18],
     [1,37,9,45,17,53,25,61,33,5,41,13,49,21,57,29,2,38,10,46,18,54,26,62,34,6,42,14,50,22,58,30,35,7,43,15,51,23,59,31,3,39,11,47,19,55,27,63,36,8,44,16,52,24,60,32,4,40,12,48,20,56,28,64],
+    
     [1,55,11,65,21,75,31,85,41,95,51,7,61,17,71,27,81,37,91,47,2,56,12,66,22,76,32,86,42,96,52,8,62,18,72,28,82,38,92,48,3,57,13,67,23,77,33,87,43,97,
     	4,58,14,68,24,78,34,88,44,98,53,9,63,19,73,29,84,39,93,49,5,59,15,60,25,79,35,89,45,99,54,10,64,20,74,30,85,40,94,50,6,60,16,61,26,80,36,90,46,100],
     [1,211,21,231,41,251,61,271,81,291,101,311,121,331,141,351,161,371,181,391,201,11,221,31,241,51,261,71,281,91,301,111,321,131,341,151,361,171,381,191,2,
@@ -52,9 +53,9 @@ function drawImage(jjsn) {
         clr='gray';
         }else{clr='black';}
         for (var j = 0; j < row_[idx]; j++) {
-        	
-        	
+          	
         if(clr=='black'){
+        	
         clr='gray';
         }else{
         clr='black';
@@ -65,10 +66,12 @@ function drawImage(jjsn) {
     	   	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],'Miss Title','Miss Your Messag','Signature',clr);
     	                }
     	                else{
+    	                	 var   str_ = myObj.grt[posi[idx][Qty]-1].message;
+    	                	  var  result_ = str_.replace(/.{42}\S*\s+/g, "$&@").split(/\s+@/);
     	                	
     	                	 images[Qty].src =  myObj.grt[posi[idx][Qty]-1].profile_image_url.substr(1).slice(0, -1);
     	             		
-    	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],myObj.grt[Qty].title,myObj.grt[posi[idx][Qty]-1].message,myObj.grt[posi[idx][Qty]-1].signature,clr);
+    	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],myObj.grt[Qty].title,result_[0],result_[1],result_[2],myObj.grt[posi[idx][Qty]-1].signature,clr);
     	                }
     				parseInt(Qty+=1);
     }
@@ -92,10 +95,11 @@ function drawImage(jjsn) {
     	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],'Miss Title','Miss Your Messag','Signature',clr);
     	                }
     	                else{
-    	                	console.log(posi[idx][Qty]);
+    	                	 var   str_ = myObj.grt[posi[idx][Qty]-1].message;
+   	                	  var  result_ = str_.replace(/.{42}\S*\s+/g, "$&@").split(/\s+@/);
     	                	 images[Qty].src =  myObj.grt[posi[idx][Qty]-1].profile_image_url.substr(1).slice(0, -1);
     	             		
-    	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],myObj.grt[posi[idx][Qty]-1].title,myObj.grt[posi[idx][Qty]-1].message,myObj.grt[posi[idx][Qty]-1].signature,clr);
+    	                     images[Qty].onload = dumb(context, images[Qty],Qty, i, j,Qty,img_wi[idx],img_hi[idx],myObj.grt[posi[idx][Qty]-1].title,result_[0],result_[1],result_[2],myObj.grt[posi[idx][Qty]-1].signature,clr);
     	                }  parseInt(Qty+=1);
     }
     }
@@ -103,14 +107,15 @@ function drawImage(jjsn) {
     images1[0].src = myObj.center_image.substr(1).slice(0, -1);
     images1[0].onload=dumb1(context, images1[0]);
     	 
-    	 
+
+
      }else{
     	 alert("json incompleated");
      }
     
 }
 window.onload = init;
-function dumb(ctx,img,index,i,j,Qty,wii,hii,title_,msg_,Sing_,clr){
+function dumb(ctx,img,index,i,j,Qty,wii,hii,title_,msg_,msg_1,msg_2,Sing_,clr){
 return function (){
 	 ctx.fillStyle =clr;
 	  
@@ -121,11 +126,16 @@ return function (){
       ctx.font =((hii/100)*10)/2+"pt sans-serif";
 	  ctx.fillText(title_, (i*wii)+(wii)/2, (j*hii)+(hii*.065));
 	  
+	  
 	  ctx.fillStyle = "black";
-      ctx.font =wii*.04+"pt sans-serif";
+      ctx.font =wii*.03+"pt arial";
 	  ctx.fillText(msg_, (i*wii)+(wii/2), (j*hii)+(hii*.16) ); 
-	 
+	  ctx.fillText(msg_1, (i*wii)+(wii/2), (j*hii)+(hii*.22) ); 
+	  ctx.fillText(msg_2, (i*wii)+(wii/2), (j*hii)+(hii*.28) ); 
+		 
+	   
 	  ctx.drawImage(img, (i*wii)+(wii*.2), (j*hii)+(hii*.3), wii*.6, hii*.6);
+	  ctx.font = "bold "+wii*.03+"pt  arial";
 	   ctx.fillText(Sing_, (i*wii)+(wii/2), (j*hii)+(hii*.95) );};
 }
 function dumb1(ctx,img){
@@ -134,11 +144,18 @@ function dumb1(ctx,img){
         context.drawImage(img,1500,0, 3000, 3000); 
     };
 }
+function download() {
+	var download = document.getElementById("download");
+	var iimm = document.getElementById("canvas").toDataURL("image/png");
+	download.href=iimm;
+	//download.setAttribute("download","archive.png");
+	}
 </script>
 </head>
 <body>
- 
-
-<canvas id="canvas" width="6000px" height="3000px";" ></canvas>
+ <canvas id="canvas" width="6000px" height="3000px";" ></canvas>
+<a id="download" download>
+<button type="button" onClick="download()">Download JPEG</button>
+</a>
 </body>
 </html>
